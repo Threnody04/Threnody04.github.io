@@ -20,9 +20,10 @@
     }
 :root {
     --primary-color: #2EFF4F; /* 荧光绿 */
-    --text-color: #FFFFFF;    /* 纯白 */
-    --bg-color: #111111;      /* 深色背景 */
-    --card-bg: #1A1A1A;       /* 卡片/输入框背景色 */
+    --text-color: #FFFFFF; /* 纯白 */
+    --bg-color: #111111; /* 深色背景 */
+    --card-bg: #1A1A1A; /* 卡片/输入框背景色 */
+    color-scheme: dark;
 }
 html {
     scroll-behavior: smooth; /* 开启丝滑的滚动效果 */
