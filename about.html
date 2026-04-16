@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我 - 我的作品集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">MyLogo</a>
+        <nav class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="about.html" class="active">关于</a>
+            <a href="portfolio.html">作品</a>
+        </nav>
+        <a href="contact.html" class="btn-contact">与我联系</a>
+    </header>
+
+    <main class="main-content">
+        <h2>认识一下<span class="highlight">我</span></h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>你好！我是一名热爱设计的创意工作者。我擅长将复杂的信息架构转化为直观、美观的用户界面。</p>
+                <br>
+                <p>在这个项目中，我使用了 Figma 进行前期的高保真界面设计，并独立完成了基于 HTML 和 CSS 的前端响应式开发。我深信优秀的设计不仅仅是好看，更是为了解决实际问题。</p>
+
+                <!-- ==============================
+                     视频占位区域
+                =============================== -->
+                <div class="video-wrapper">
+                    <div class="video-placeholder">
+                        <div class="play-btn"></div>
+                        <span>个人介绍视频 (占位)</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 15px; color: #FFF;">我的技能树</h3>
+                <div class="skills">
+                    <span class="skill-tag">Figma UI设计</span>
+                    <span class="skill-tag">网页信息架构</span>
+                    <span class="skill-tag">HTML / CSS</span>
+                    <span class="skill-tag">响应式布局</span>
+                    <span class="skill-tag">用户体验 (UX)</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p></footer>
+    <!-- 自动依次浮入动画脚本 -->
+    <script>document.addEventListener('DOMContentLoaded', () => {
+            // 选取页面上的核心模块（排除了弹窗里的内容）
+            const elements = document.querySelectorAll('.hero-section h1, .hero-section p, .about-text p, h3, .skills, .video-wrapper, .card, h2');
+            let delay = 0.1; // 初始延迟 0.1秒
+
+            elements.forEach((el) => {
+                if (el.closest('.modal-overlay')) return; // 不处理隐藏弹窗里的元素
+                el.classList.add('animate-up');
+                el.style.animationDelay = `${delay}s`;
+                delay += 0.15; // 每个元素比上一个晚出现 0.15秒
+            });
+        });</script>
+</body>
+</html>

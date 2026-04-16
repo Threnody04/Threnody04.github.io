@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>与我联系 - 我的作品集</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 1. 开启 HTML 的 Y 轴强制滚动捕捉 */
+        html {
+            scroll-snap-type: y mandatory;
+        }
+
+        /* ★ 核心修复：消除 main-content 默认的上下边距，防止撑破 100vh 导致内容偏下 ★ */
+        .main-content {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* 2. 第一屏：强制占满屏幕并完美居中 */
+        .contact-hero {
+            height: 100vh;
+            scroll-snap-align: start; /* 吸附点：顶部 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 垂直完美居中 */
+            align-items: center; /* 水平完美居中 */
+            margin: 0;
+            /* 导航栏吸顶占据了空间，向下补偿一点距离，让视觉重心绝对居中 */
+            padding-top: 70px;
+            box-sizing: border-box;
+        }
+
+        /* 3. 第二屏（留言板）：强制占满屏幕并完美居中 */
+        #message-board {
+            height: 100vh;
+            scroll-snap-align: start; /* 吸附点：顶部 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 垂直完美居中 */
+            align-items: center; /* 水平完美居中 */
+            margin: 0 auto !important;
+            padding: 70px 0 0 0 !important; /* 同样补偿导航栏的高度 */
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+            /* ★ 补充修复：Flex 居中后，防止表单宽度缩水 ★ */
+            #message-board .contact-form {
+                width: 100%;
+                max-width: 600px; /* 保证表单和你的原设计一样宽 */
+            }
+
+        /* 4. 让页脚也能被正常吸附，防止卡住 */
+        footer {
+            scroll-snap-align: end;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">MyLogo</a>
+        <nav class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="about.html">关于</a>
+            <a href="portfolio.html">作品</a>
+        </nav>
+        <a href="contact.html" class="btn-contact" style="box-shadow: 0 0 15px rgba(46, 255, 79, 0.5);">与我联系</a>
+    </header>
+
+    <main class="main-content">
+
+        <!-- 第一屏：联系卡片 + 向下滑动提示 -->
+        <div class="contact-hero">
+            <h2 class="animate-up" style="animation-delay: 0.1s;">随时<span class="highlight">保持联系</span></h2>
+            <p class="portfolio-desc animate-up" style="animation-delay: 0.2s;">你可以通过以下方式直接找到我，或者向下滑动给我留言。</p>
+
+            <div class="contact-cards-grid">
+                <!-- 电话卡片 -->
+                <div class="contact-card animate-up" style="animation-delay: 0.3s;">
+                    <div class="contact-icon" style="font-family: Arial;">#</div> <!-- 电话 -->
+                    <h3>电话</h3>
+                    <p style="color: #ccc;">+86 138 8888 8888</p>
+                </div>
+                <!-- 邮箱卡片 -->
+                <div class="contact-card animate-up" style="animation-delay: 0.4s;">
+                    <div class="contact-icon" style="font-family: Arial;">@</div> <!-- 邮箱 -->
+                    <h3>电子邮件</h3>
+                    <p style="color: #ccc;">**********@outlook.com</p>
+                </div>
+                <!-- 地址卡片 -->
+                <div class="contact-card animate-up" style="animation-delay: 0.5s;">
+                    <div class="contact-icon" style="font-family: Arial;">&</div> <!-- 位置 -->
+                    <h3>所在位置</h3>
+                    <p style="color: #ccc;">北京市 房山区 北京工商大学</p>
+                </div>
+            </div>
+
+            <!-- 点击这个按钮会丝滑滚动到下面的留言板 -->
+            <a href="#message-board" class="scroll-down animate-up" style="animation-delay: 0.8s;">
+                向下滑动留言
+            </a>
+        </div>
+
+        <!-- 第二屏：原本的留言表单 -->
+        <div id="message-board" class="contact-container animate-up">
+            <h2 style="font-size: 32px; margin-bottom: 10px;">给我<span class="highlight">留言</span></h2>
+            <p class="portfolio-desc">如果你对我的作品感兴趣，或者有项目需要合作，请填写下方表单！</p>
+
+            <form class="contact-form">
+                <div>
+                    <label style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">你的称呼</label>
+                    <input type="text" placeholder="输入你的名字">
+                </div>
+                <div>
+                    <label style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">电子邮箱</label>
+                    <input type="email" placeholder="输入你的邮箱">
+                </div>
+                <div>
+                    <label style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">留言内容</label>
+                    <textarea placeholder="输入你想对我说的话..."></textarea>
+                </div>
+                <button type="button" class="btn-contact" style="width: 100%; margin-top: 10px;">发送消息</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer><p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p></footer>
+</body>
+</html>

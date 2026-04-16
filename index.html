@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 - 我的作品集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">MyLogo</a>
+        <nav class="nav-links">
+            <a href="index.html" class="active">首页</a>
+            <a href="about.html">关于</a>
+            <a href="portfolio.html">作品</a>
+        </nav>
+        <a href="contact.html" class="btn-contact">与我联系</a>
+    </header>
+
+    <!-- 首屏：自我介绍 -->
+    <main class="main-content hero-section">
+        <div>
+            <h1 class="dodge-title">
+                <span class="char">你</span><span class="char">好</span><span class="char">，</span><span class="char">我</span><span class="char">是</span><br>
+                <span class="highlight">
+                    <span class="char">U</span><span class="char">I</span><span class="char">/</span><span class="char">U</span><span class="char">X</span>
+                    &nbsp;
+                    <span class="char">设</span><span class="char">计</span><span class="char">师</span>
+                </span>
+            </h1>
+            <p class="hero-desc">我致力于创造极具视觉冲击力、且用户体验优秀的现代网页。这是我的网页设计与布局练习项目。</p>
+
+            <!-- ===== 新增的引导按钮组 ===== -->
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center;">
+                <a href="portfolio.html" class="btn-contact" >探索我的作品</a>
+                <a href="about.html" class="btn-contact" style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">了解更多</a>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p></footer>
+
+    <!-- ===== 字符避让互动效果 JS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chars = document.querySelectorAll('.char');
+            let mouseX = -1000;
+            let mouseY = -1000;
+
+            // 记录鼠标实时位置
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // 为每个字符初始化坐标数据
+            const charData = Array.from(chars).map(char => ({
+                el: char,
+                x: 0, // 当前 X 偏移量
+                y: 0, // 当前 Y 偏移量
+            }));
+
+            const repelRadius = 140; // 鼠标的“排斥力场”半径 (距离多近开始躲避)
+            const pushForce = 40;    // 最远被推开的距离 (像素)
+
+            function animate() {
+                charData.forEach(data => {
+                    // 获取字符当前的绝对中心点
+                    const rect = data.el.getBoundingClientRect();
+                    // 这里要减去它当前的偏移量，获得它原本静止时的真实中心点位置
+                    const centerX = rect.left - data.x + rect.width / 2;
+                    const centerY = rect.top - data.y + rect.height / 2;
+
+                    // 计算鼠标到字符中心的距离
+                    const dx = centerX - mouseX;
+                    const dy = centerY - mouseY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    let targetX = 0;
+                    let targetY = 0;
+
+                    // 如果鼠标进入了排斥力场
+                    if (distance < repelRadius && distance > 0) {
+                        // 越靠近鼠标，排斥力越大 (0 到 1)
+                        const force = (repelRadius - distance) / repelRadius;
+
+                        // 计算被推开的目标位置 (向鼠标的反方向推)
+                        targetX = (dx / distance) * force * pushForce;
+                        targetY = (dy / distance) * force * pushForce;
+                    }
+
+                    // 缓动动画 (Lerp)：让字符丝滑地移动到目标位置，而不是瞬间瞬移
+                    data.x += (targetX - data.x) * 0.05;
+                    data.y += (targetY - data.y) * 0.05;
+
+                    // 应用位移，并在被推开时加入发光效果
+                    data.el.style.transform = `translate(${data.x}px, ${data.y}px)`;
+
+                    if (Math.abs(data.x) > 1 || Math.abs(data.y) > 1) {
+                        data.el.style.color = '#2EFF4F'; // 躲避时变成荧光绿
+                        data.el.style.textShadow = '0 0 15px rgba(46, 255, 79, 0.8)';
+                    } else {
+                        data.el.style.color = ''; // 回归原位时恢复原色
+                        data.el.style.textShadow = '';
+                    }
+                });
+
+                requestAnimationFrame(animate); // 持续循环刷新
+            }
+
+            animate(); // 启动动画
+        });
+    </script>
+</body>
+</html>

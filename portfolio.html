@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品展示 - 我的作品集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">MyLogo</a>
+        <nav class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="about.html">关于</a>
+            <a href="portfolio.html" class="active">作品</a>
+        </nav>
+        <a href="contact.html" class="btn-contact">与我联系</a>
+    </header>
+
+    <main class="main-content">
+        <h2>我的<span class="highlight">精选作品</span></h2>
+        <p class="portfolio-desc">以下是我近期完成的设计项目。</p>
+
+        <div class="portfolio-grid">
+            <div class="card">
+                <div class="card-image" style="background-color: #333;"></div>
+                <div class="card-content">
+                    <h3>项目一</h3>
+                    <p class="portfolio-desc">项目一详情占位十个字。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-color: #444;"></div>
+                <div class="card-content">
+                    <h3>项目二</h3>
+                    <p class="portfolio-desc">项目二详情占位十个字。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-color: #222;"></div>
+                <div class="card-content">
+                    <h3>项目三</h3>
+                    <p class="portfolio-desc">项目三详情占位十个字。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-color: #555;"></div>
+                <div class="card-content">
+                    <h3>项目四</h3>
+                    <p class="portfolio-desc">项目四详情占位十个字。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-color: #222;"></div>
+                <div class="card-content">
+                    <h3>项目五</h3>
+                    <p class="portfolio-desc">项目五详情占位十个字。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-color: #555;"></div>
+                <div class="card-content">
+                    <h3>项目六</h3>
+                    <p class="portfolio-desc">项目六详情占位十个字。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p></footer>
+
+    <!-- ==========================================
+         弹窗遮罩层及内部轮播图 (默认隐藏)
+    =========================================== -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+
+            <!-- 轮播图区域 -->
+            <div class="carousel">
+                <div class="carousel-inner" id="carousel-inner">
+                    <!-- 3张占位色块，以后这里可以换成 <img> 标签 -->
+                    <div class="carousel-item" style="background-color: #2a2a2a;"><span class="placeholder-text">图片 1</span></div>
+                    <div class="carousel-item" style="background-color: #3d3d3d;"><span class="placeholder-text">图片 2</span></div>
+                    <div class="carousel-item" style="background-color: #1a1a1a;"><span class="placeholder-text">图片 3</span></div>
+                </div>
+                <!-- 左右翻页按钮 -->
+                <button class="carousel-control prev">&#10094;</button>
+                <button class="carousel-control next">&#10095;</button>
+            </div>
+
+            <!-- 弹窗内的文字描述区域 -->
+            <div class="modal-text">
+                <h3 id="modal-title">项目标题加载中...</h3>
+                <p id="modal-desc">项目详情描述加载中...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 控制弹窗和轮播图的 JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('project-modal');
+            const closeBtn = document.querySelector('.close-btn');
+            const cards = document.querySelectorAll('.card');
+
+            const modalTitle = document.getElementById('modal-title');
+            const modalDesc = document.getElementById('modal-desc');
+
+            // 轮播图相关变量
+            const carouselInner = document.getElementById('carousel-inner');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            let currentIndex = 0;
+            const totalItems = 3; // 3张轮播图
+
+            // 1. 遍历所有卡片，添加点击事件
+            cards.forEach(card => {
+                card.style.cursor = 'pointer'; // 鼠标放上去变小手
+
+                card.addEventListener('click', () => {
+                    // 提取被点击卡片的标题和内容
+                    const title = card.querySelector('h3').innerText;
+                    const desc = card.querySelector('p').innerText;
+
+                    // 将内容放入弹窗
+                    modalTitle.innerText = title;
+                    modalDesc.innerText = desc;
+
+                    // 每次打开弹窗，将轮播图重置到第一张
+                    currentIndex = 0;
+                    updateCarousel();
+
+                    // 显示弹窗并阻止背景滚动
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // 2. 关闭弹窗功能
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // 恢复背景滚动
+            };
+
+            closeBtn.addEventListener('click', closeModal);
+
+            // 点击模糊的背景区域也可以关闭弹窗
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // 3. 轮播图翻页逻辑
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel();
+            });
+
+            // 执行横向滑动动画
+            function updateCarousel() {
+                carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        });
+    </script>
+    <!-- 自动依次浮入动画脚本 (作品集专用版) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 这里我们精确选取：主标题、主简介、以及一整个卡片容器
+            // 不再去选中卡片内部的文字，让卡片作为一个整体浮入
+            const elements = document.querySelectorAll('main > h2, main > p.portfolio-desc, .card');
+            let delay = 0.1;
+
+            elements.forEach((el) => {
+                el.classList.add('animate-up');
+                el.style.animationDelay = `${delay}s`;
+                delay += 0.15; // 依次延迟 0.15 秒
+            });
+        });
+    </script>
+</body>
+</html>
