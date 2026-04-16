@@ -8,6 +8,11 @@
 </head>
 
 <body>
+    <!-- ==========================================
+         页面转场遮罩层
+    =========================================== -->
+    <div class="page-transition-overlay"></div>
+
     <header class="navbar">
         <a href="index.html" class="logo">MyLogo</a>
         <nav class="nav-links">
@@ -33,7 +38,7 @@
 
             <!-- ===== 新增的引导按钮组 ===== -->
             <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center;">
-                <a href="portfolio.html" class="btn-contact" >探索我的作品</a>
+                <a href="portfolio.html" class="btn-contact">探索我的作品</a>
                 <a href="about.html" class="btn-contact" style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">了解更多</a>
             </div>
         </div>
@@ -110,6 +115,45 @@
             }
 
             animate(); // 启动动画
+        });
+    </script>
+    <!-- ==========================================
+         全局转场动画控制脚本
+    =========================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 页面进入时的淡出动画
+            const transitionOverlay = document.querySelector('.page-transition-overlay');
+            if (transitionOverlay) {
+                setTimeout(() => {
+                    transitionOverlay.classList.add('loaded');
+                }, 0);
+            }
+
+            // 2. 拦截所有的 <a> 标签点击事件，制造页面离开时的黑屏动画
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const targetUrl = this.getAttribute('href');
+                    const targetBlank = this.getAttribute('target');
+
+                    // 排除：没有链接、锚点链接（如 #xxx）、新窗口打开的链接、或者是发邮件的链接
+                    if (!targetUrl || targetUrl.startsWith('#') || targetBlank === '_blank' || targetUrl.startsWith('mailto:')) {
+                        return; // 不拦截，走默认行为
+                    }
+
+                    // 阻止默认的瞬间跳转
+                    e.preventDefault();
+
+                    // 去除 loaded 类，让黑屏加载圈重新淡入
+                    transitionOverlay.classList.remove('loaded');
+
+                    // 等待 600 毫秒（等待黑屏完全盖住页面），然后再跳转
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 600);
+                });
+            });
         });
     </script>
 </body>

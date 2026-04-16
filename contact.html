@@ -5,59 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>与我联系 - 我的作品集</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* 1. 开启 HTML 的 Y 轴强制滚动捕捉 */
-        html {
-            scroll-snap-type: y mandatory;
-        }
-
-        /* ★ 核心修复：消除 main-content 默认的上下边距，防止撑破 100vh 导致内容偏下 ★ */
-        .main-content {
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
-
-        /* 2. 第一屏：强制占满屏幕并完美居中 */
-        .contact-hero {
-            height: 100vh;
-            scroll-snap-align: start; /* 吸附点：顶部 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* 垂直完美居中 */
-            align-items: center; /* 水平完美居中 */
-            margin: 0;
-            /* 导航栏吸顶占据了空间，向下补偿一点距离，让视觉重心绝对居中 */
-            padding-top: 70px;
-            box-sizing: border-box;
-        }
-
-        /* 3. 第二屏（留言板）：强制占满屏幕并完美居中 */
-        #message-board {
-            height: 100vh;
-            scroll-snap-align: start; /* 吸附点：顶部 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* 垂直完美居中 */
-            align-items: center; /* 水平完美居中 */
-            margin: 0 auto !important;
-            padding: 70px 0 0 0 !important; /* 同样补偿导航栏的高度 */
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-            /* ★ 补充修复：Flex 居中后，防止表单宽度缩水 ★ */
-            #message-board .contact-form {
-                width: 100%;
-                max-width: 600px; /* 保证表单和你的原设计一样宽 */
-            }
-
-        /* 4. 让页脚也能被正常吸附，防止卡住 */
-        footer {
-            scroll-snap-align: end;
-        }
-    </style>
 </head>
 <body>
+    <!-- ==========================================
+         页面转场遮罩层
+    =========================================== -->
+    <div class="page-transition-overlay"></div>
+
     <header class="navbar">
         <a href="index.html" class="logo">MyLogo</a>
         <nav class="nav-links">
@@ -70,62 +24,151 @@
 
     <main class="main-content">
 
-        <!-- 第一屏：联系卡片 + 向下滑动提示 -->
-        <div class="contact-hero">
-            <h2 class="animate-up" style="animation-delay: 0.1s;">随时<span class="highlight">保持联系</span></h2>
-            <p class="portfolio-desc animate-up" style="animation-delay: 0.2s;">你可以通过以下方式直接找到我，或者向下滑动给我留言。</p>
+        <!-- 唯一的一屏：联系卡片 + 留言按钮 -->
+        <!-- 注意：这里去掉了 HTML 里的类名和行内样式，全部交给下面的 JS 去丝滑接管 -->
+        <div class="contact-hero" style="min-height: 75vh;">
+            <h2>随时<span class="highlight">保持联系</span></h2>
+            <p class="portfolio-desc">你可以通过以下方式直接找到我，或者点击下方按钮给我留言。</p>
 
             <div class="contact-cards-grid">
                 <!-- 电话卡片 -->
-                <div class="contact-card animate-up" style="animation-delay: 0.3s;">
-                    <div class="contact-icon" style="font-family: Arial;">#</div> <!-- 电话 -->
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
                     <h3>电话</h3>
                     <p style="color: #ccc;">+86 138 8888 8888</p>
                 </div>
                 <!-- 邮箱卡片 -->
-                <div class="contact-card animate-up" style="animation-delay: 0.4s;">
-                    <div class="contact-icon" style="font-family: Arial;">@</div> <!-- 邮箱 -->
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
                     <h3>电子邮件</h3>
                     <p style="color: #ccc;">**********@outlook.com</p>
                 </div>
                 <!-- 地址卡片 -->
-                <div class="contact-card animate-up" style="animation-delay: 0.5s;">
-                    <div class="contact-icon" style="font-family: Arial;">&</div> <!-- 位置 -->
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
                     <h3>所在位置</h3>
                     <p style="color: #ccc;">北京市 房山区 北京工商大学</p>
                 </div>
             </div>
 
-            <!-- 点击这个按钮会丝滑滚动到下面的留言板 -->
-            <a href="#message-board" class="scroll-down animate-up" style="animation-delay: 0.8s;">
-                向下滑动留言
-            </a>
-        </div>
-
-        <!-- 第二屏：原本的留言表单 -->
-        <div id="message-board" class="contact-container animate-up">
-            <h2 style="font-size: 32px; margin-bottom: 10px;">给我<span class="highlight">留言</span></h2>
-            <p class="portfolio-desc">如果你对我的作品感兴趣，或者有项目需要合作，请填写下方表单！</p>
-
-            <form class="contact-form">
-                <div>
-                    <label style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">你的称呼</label>
-                    <input type="text" placeholder="输入你的名字">
-                </div>
-                <div>
-                    <label style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">电子邮箱</label>
-                    <input type="email" placeholder="输入你的邮箱">
-                </div>
-                <div>
-                    <label style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">留言内容</label>
-                    <textarea placeholder="输入你想对我说的话..."></textarea>
-                </div>
-                <button type="button" class="btn-contact" style="width: 100%; margin-top: 10px;">发送消息</button>
-            </form>
+            <!-- 呼出弹窗的大按钮区域 (加了个 class 方便 JS 选中) -->
+            <div class="msg-btn-wrapper" style="margin-top: 60px;">
+                <button id="open-msg-btn" class="btn-contact" style="padding: 15px 40px; font-size: 20px; box-shadow: 0 0 20px rgba(46, 255, 79, 0.3);">
+                    ✍️ 给我留言
+                </button>
+            </div>
         </div>
 
     </main>
 
     <footer><p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p></footer>
+
+    <!-- ==========================================
+         留言表单弹窗
+    =========================================== -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 500px; padding: 40px 30px;">
+            <span class="close-btn" id="close-msg-btn">&times;</span>
+
+            <h2 style="font-size: 32px; margin-bottom: 10px; text-align: center;">给我<span class="highlight">留言</span></h2>
+            <p class="portfolio-desc" style="text-align: center; margin-bottom: 30px; font-size: 14px;">对我的作品感兴趣？请填写下方表单！</p>
+
+            <form class="contact-form" style="margin-top: 0;">
+                <div>
+                    <label for="userName" style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">你的称呼</label>
+                    <input id="userName" type="text" placeholder="输入你的名字">
+                </div>
+                <div>
+                    <label for="userEmail" style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">电子邮箱</label>
+                    <input id="userEmail" type="email" placeholder="输入你的邮箱">
+                </div>
+                <div>
+                    <label for="userMsg" style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">留言内容</label>
+                    <textarea id="userMsg" placeholder="输入你想对我说的话..." style="min-height: 120px;"></textarea>
+                </div>
+                <button type="button" class="btn-contact" style="width: 100%; margin-top: 20px; padding: 12px;">发送消息</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 弹窗控制与入场动画脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 采用和其他页面一模一样的“动态赋予延迟”算法，保证丝滑
+            const elements = document.querySelectorAll('.contact-hero h2, .contact-hero p.portfolio-desc, .contact-card, .msg-btn-wrapper');
+            let delay = 0.1;
+
+            elements.forEach((el) => {
+                el.classList.add('animate-up');
+                el.style.animationDelay = `${delay}s`;
+                delay += 0.15; // 依次延迟 0.15 秒
+            });
+
+            // 2. 留言弹窗逻辑
+            const modal = document.getElementById('contact-modal');
+            const openBtn = document.getElementById('open-msg-btn');
+            const closeBtn = document.getElementById('close-msg-btn');
+
+            // 打开弹窗
+            openBtn.addEventListener('click', () => {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // 阻止底层背景滚动
+            });
+
+            // 关闭弹窗的公共函数
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // 恢复背景滚动
+            };
+
+            // 点击右上角 X 关闭
+            closeBtn.addEventListener('click', closeModal);
+
+            // 点击黑色半透明背景关闭
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+        });
+    </script>
+    <!-- ==========================================
+         全局转场动画控制脚本
+    =========================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 页面进入时的淡出动画
+            const transitionOverlay = document.querySelector('.page-transition-overlay');
+            if (transitionOverlay) {
+                // 为了让加载圈有展示的时间，稍微延迟 100 毫秒再淡出
+                setTimeout(() => {
+                    transitionOverlay.classList.add('loaded');
+                }, 0);
+            }
+
+            // 2. 拦截所有的 <a> 标签点击事件，制造页面离开时的黑屏动画
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const targetUrl = this.getAttribute('href');
+                    const targetBlank = this.getAttribute('target');
+
+                    // 排除：没有链接、锚点链接（如 #xxx）、新窗口打开的链接、或者是发邮件的链接
+                    if (!targetUrl || targetUrl.startsWith('#') || targetBlank === '_blank' || targetUrl.startsWith('mailto:')) {
+                        return; // 不拦截，走默认行为
+                    }
+
+                    // 阻止默认的瞬间跳转
+                    e.preventDefault();
+
+                    // 去除 loaded 类，让黑屏加载圈重新淡入
+                    transitionOverlay.classList.remove('loaded');
+
+                    // 等待 200 毫秒（等待黑屏完全盖住页面），然后再跳转
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 200);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
