@@ -3,229 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>作品展示 - 我的作品集</title>
+    <title>作品 - 个人介绍</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ==========================================
-         页面转场遮罩层
-    =========================================== -->
-    <div class="page-transition-overlay"></div>
 
-    <header class="navbar">
-        <a href="index.html" class="logo">MyLogo</a>
-        <nav class="nav-links">
-            <a href="index.html">首页</a>
-            <a href="about.html">关于</a>
-            <a href="portfolio.html" class="active">作品</a>
-        </nav>
-        <a href="contact.html" class="btn-contact">与我联系</a>
-    </header>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
 
-    <main class="main-content">
-        <h2>我的<span class="highlight">精选作品</span></h2>
-        <p class="portfolio-desc">以下是我近期完成的设计项目。</p>
-
-        <div class="portfolio-grid">
-            <div class="card">
-                <div class="card-image" style="background-color: #333;"></div>
-                <div class="card-content">
-                    <h3>项目一</h3>
-                    <p class="portfolio-desc">项目一详情占位十个字。</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="background-color: #444;"></div>
-                <div class="card-content">
-                    <h3>项目二</h3>
-                    <p class="portfolio-desc">项目二详情占位十个字。</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="background-color: #222;"></div>
-                <div class="card-content">
-                    <h3>项目三</h3>
-                    <p class="portfolio-desc">项目三详情占位十个字。</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="background-color: #555;"></div>
-                <div class="card-content">
-                    <h3>项目四</h3>
-                    <p class="portfolio-desc">项目四详情占位十个字。</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="background-color: #222;"></div>
-                <div class="card-content">
-                    <h3>项目五</h3>
-                    <p class="portfolio-desc">项目五详情占位十个字。</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="background-color: #555;"></div>
-                <div class="card-content">
-                    <h3>项目六</h3>
-                    <p class="portfolio-desc">项目六详情占位十个字。</p>
-                </div>
-            </div>
+    <!-- 顶部导航栏 -->
+    <nav class="glass-nav" id="mainNav">
+        <div class="nav-content">
+            <div class="logo">Designer.</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="portfolio.html" class="active">作品</a></li>
+            </ul>
+            <a href="contact.html" class="btn-contact">联系我</a>
         </div>
+        <div class="nav-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+        </div>
+    </nav>
+
+    <main class="portfolio-page">
+
+        <!-- =========================================
+             视图 1：主大厅 (默认显示)
+             ========================================= -->
+        <div id="portfolio-main" class="page-view">
+            <header class="portfolio-header">
+                <h1 class="section-title fade-up-element">我的作品</h1>
+                <p class="section-subtitle fade-up-element">探索我不同领域的设计实践</p>
+            </header>
+
+            <!-- 类别选择器 (添加了 onclick 触发切换视图) -->
+            <section class="category-selector">
+                <div class="glass-card category-card fade-up-element" onclick="openCategory('app', 'App 设计', 'iOS & Android 原生体验')">
+                    <div class="icon">📱</div>
+                    <h3>App 设计</h3>
+                    <p>iOS & Android 原生体验</p>
+                </div>
+                <div class="glass-card category-card fade-up-element" onclick="openCategory('web', 'Web 网页设计', 'SaaS 与 响应式官网')">
+                    <div class="icon">💻</div>
+                    <h3>Web 网页设计</h3>
+                    <p>SaaS 与 响应式官网</p>
+                </div>
+                <div class="glass-card category-card fade-up-element" onclick="openCategory('3d', '3D & 动效', '空间计算与微交互')">
+                    <div class="icon">🧊</div>
+                    <h3>3D & 动效</h3>
+                    <p>空间计算与微交互</p>
+                </div>
+            </section>
+
+            <!-- 典型案例展示 (保持不变) -->
+            <section class="featured-works">
+                <h2 class="section-title fade-up-element" style="font-size: 2rem;">典型案例展示</h2>
+                <div class="works-grid">
+                    <div class="glass-card work-card fade-up-element" onclick="openModal('project1')">
+                        <div class="work-image" style="background: linear-gradient(45deg, #e0c3fc 0%, #8ec5fc 100%);">
+                            <span class="img-placeholder-text">金融 App (点击查看)</span>
+                        </div>
+                        <div class="work-info">
+                            <h3>金融类 App 概念设计</h3>
+                            <p>iOS / 视觉重构 / 动效设计</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =========================================
+             视图 2：分类二级页面 (初始隐藏)
+             ========================================= -->
+        <div id="portfolio-category" class="page-view" style="display: none;">
+
+            <!-- 返回按钮 -->
+            <div style="max-width: 1000px; margin: 0 auto 20px; padding: 0 5%;">
+                <button class="btn-back glass-card" onclick="backToMain()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+                    返回作品大厅
+                </button>
+            </div>
+
+            <header class="portfolio-header">
+                <h1 id="cat-title" class="section-title">分类标题</h1>
+                <p id="cat-desc" class="section-subtitle">分类描述</p>
+            </header>
+
+            <!-- App 分类专属瀑布流 -->
+            <div id="grid-app" class="works-grid cat-grid" style="display: none;">
+                <div class="glass-card work-card fade-up-element" onclick="openModal('project1')">
+                    <div class="work-image" style="background: linear-gradient(45deg, #e0c3fc 0%, #8ec5fc 100%);"><span class="img-placeholder-text">金融 App</span></div>
+                    <div class="work-info"><h3>金融类 App 设计</h3><p>iOS</p></div>
+                </div>
+                <div class="glass-card work-card fade-up-element" onclick="openModal('project_app2')">
+                    <div class="work-image" style="background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);"><span class="img-placeholder-text">社交 App</span></div>
+                    <div class="work-info"><h3>音乐社交 App 概念</h3><p>Android / 动效</p></div>
+                </div>
+            </div>
+
+            <!-- Web 分类专属瀑布流 -->
+            <div id="grid-web" class="works-grid cat-grid" style="display: none;">
+                <div class="glass-card work-card fade-up-element" onclick="openModal('project2')">
+                    <div class="work-image" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);"><span class="img-placeholder-text">SaaS 数据看板</span></div>
+                    <div class="work-info"><h3>SaaS 后台设计系统</h3><p>Web端 / B端组件库</p></div>
+                </div>
+                <div class="glass-card work-card fade-up-element" onclick="openModal('project_web2')">
+                    <div class="work-image" style="background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);"><span class="img-placeholder-text">品牌官网</span></div>
+                    <div class="work-info"><h3>独立设计师品牌响应式官网</h3><p>Web端 / 视觉</p></div>
+                </div>
+            </div>
+
+            <!-- 3D 分类专属瀑布流 -->
+            <div id="grid-3d" class="works-grid cat-grid" style="display: none;">
+                <div class="glass-card work-card fade-up-element" onclick="openModal('project_3d1')">
+                    <div class="work-image" style="background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);"><span class="img-placeholder-text">空间计算 UI</span></div>
+                    <div class="work-info"><h3>visionOS 概念界面</h3><p>3D / 空间交互</p></div>
+                </div>
+            </div>
+
+        </div>
+
     </main>
 
-    <footer><p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p></footer>
+    <!-- =========================================
+         作品详情弹窗 (Modal)
+         ========================================= -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="glass-card modal-container">
+            <!-- 关闭按钮 -->
+            <button class="modal-close" onclick="closeModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+            </button>
 
-    <!-- ==========================================
-         弹窗遮罩层及内部轮播图 (默认隐藏)
-    =========================================== -->
-    <div id="project-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-
-            <!-- 轮播图区域 -->
-            <div class="carousel">
-                <div class="carousel-inner" id="carousel-inner">
-                    <!-- 3张占位色块，以后这里可以换成 <img> 标签 -->
-                    <div class="carousel-item" style="background-color: #2a2a2a;"><span class="placeholder-text">图片 1</span></div>
-                    <div class="carousel-item" style="background-color: #3d3d3d;"><span class="placeholder-text">图片 2</span></div>
-                    <div class="carousel-item" style="background-color: #1a1a1a;"><span class="placeholder-text">图片 3</span></div>
-                </div>
-                <!-- 左右翻页按钮 -->
-                <button class="carousel-control prev">&#10094;</button>
-                <button class="carousel-control next">&#10095;</button>
+            <!-- 左侧图片区 (可独立滚动) -->
+            <div class="modal-left" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);">
+                <div class="modal-img-placeholder">细节图占位</div>
             </div>
 
-            <!-- 弹窗内的文字描述区域 -->
-            <div class="modal-text">
-                <h3 id="modal-title">项目标题加载中...</h3>
-                <p id="modal-desc">项目详情描述加载中...</p>
+            <!-- 右侧文字详情区 -->
+            <div class="modal-right">
+                <h2 id="modal-title">项目名称加载中...</h2>
+                <div class="modal-tags">
+                    <span>标签一</span>
+                    <span>标签二</span>
+                    <span>标签三</span>
+                </div>
+
+                <div class="modal-desc">
+                    <h3>项目背景</h3>
+                    <p>占位占位占位占位占位占位占位占位占位占位占位占位占位</p>
+
+                    <h3>我的角色</h3>
+                    <p>占位占位占位占位占位占位占位占位占位占位占位占位占位</p>
+
+                    <h3>设计亮点</h3>
+                    <p>占位占位占位占位占位占位占位占位占位占位占位占位占位</p>
+                </div>
+
+                <a href="#" class="btn-contact" style="display:inline-block; margin-top: 20px;">访问线上原型</a>
             </div>
         </div>
     </div>
 
-    <!-- 控制弹窗和轮播图的 JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('project-modal');
-            const closeBtn = document.querySelector('.close-btn');
-            const cards = document.querySelectorAll('.card');
-
-            const modalTitle = document.getElementById('modal-title');
-            const modalDesc = document.getElementById('modal-desc');
-
-            // 轮播图相关变量
-            const carouselInner = document.getElementById('carousel-inner');
-            const prevBtn = document.querySelector('.prev');
-            const nextBtn = document.querySelector('.next');
-            let currentIndex = 0;
-            const totalItems = 3; // 3张轮播图
-
-            // 1. 遍历所有卡片，添加点击事件
-            cards.forEach(card => {
-                card.style.cursor = 'pointer'; // 鼠标放上去变小手
-
-                card.addEventListener('click', () => {
-                    // 提取被点击卡片的标题和内容
-                    const title = card.querySelector('h3').innerText;
-                    const desc = card.querySelector('p').innerText;
-
-                    // 将内容放入弹窗
-                    modalTitle.innerText = title;
-                    modalDesc.innerText = desc;
-
-                    // 每次打开弹窗，将轮播图重置到第一张
-                    currentIndex = 0;
-                    updateCarousel();
-
-                    // 显示弹窗并阻止背景滚动
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-
-            // 2. 关闭弹窗功能
-            const closeModal = () => {
-                modal.classList.remove('active');
-                document.body.style.overflow = ''; // 恢复背景滚动
-            };
-
-            closeBtn.addEventListener('click', closeModal);
-
-            // 点击模糊的背景区域也可以关闭弹窗
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
-
-            // 3. 轮播图翻页逻辑
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalItems;
-                updateCarousel();
-            });
-
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-                updateCarousel();
-            });
-
-            // 执行横向滑动动画
-            function updateCarousel() {
-                carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-        });
-    </script>
-    <!-- 自动依次浮入动画脚本 (作品集专用版) -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 这里我们精确选取：主标题、主简介、以及一整个卡片容器
-            // 不再去选中卡片内部的文字，让卡片作为一个整体浮入
-            const elements = document.querySelectorAll('main > h2, main > p.portfolio-desc, .card');
-            let delay = 0.1;
-
-            elements.forEach((el) => {
-                el.classList.add('animate-up');
-                el.style.animationDelay = `${delay}s`;
-                delay += 0.15; // 依次延迟 0.15 秒
-            });
-        });
-    </script>
-    <!-- ==========================================
-         全局转场动画控制脚本
-    =========================================== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. 页面进入时的淡出动画
-            const transitionOverlay = document.querySelector('.page-transition-overlay');
-            if (transitionOverlay) {
-                // 为了让加载圈有展示的时间，稍微延迟 100 毫秒再淡出
-                setTimeout(() => {
-                    transitionOverlay.classList.add('loaded');
-                }, 0);
-            }
-
-            // 2. 拦截所有的 <a> 标签点击事件，制造页面离开时的黑屏动画
-            const links = document.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    const targetUrl = this.getAttribute('href');
-                    const targetBlank = this.getAttribute('target');
-
-                    // 排除：没有链接、锚点链接（如 #xxx）、新窗口打开的链接、或者是发邮件的链接
-                    if (!targetUrl || targetUrl.startsWith('#') || targetBlank === '_blank' || targetUrl.startsWith('mailto:')) {
-                        return; // 不拦截，走默认行为
-                    }
-
-                    // 阻止默认的瞬间跳转
-                    e.preventDefault();
-
-                    // 去除 loaded 类，让黑屏加载圈重新淡入
-                    transitionOverlay.classList.remove('loaded');
-
-                    // 等待 200 毫秒（等待黑屏完全盖住页面），然后再跳转
-                    setTimeout(() => {
-                        window.location.href = targetUrl;
-                    }, 200);
-                });
-            });
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
