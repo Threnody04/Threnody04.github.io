@@ -3,108 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我 - 我的作品集</title>
+    <title>关于 - 个人介绍</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ==========================================
-         页面转场遮罩层
-    =========================================== -->
-    <div class="page-transition-overlay"></div>
 
-    <header class="navbar">
-        <a href="index.html" class="logo">MyLogo</a>
-        <nav class="nav-links">
-            <a href="index.html">首页</a>
-            <a href="about.html" class="active">关于</a>
-            <a href="portfolio.html">作品</a>
-        </nav>
-        <a href="contact.html" class="btn-contact">与我联系</a>
-    </header>
+    <!-- 动态背景渐变色块（与首页保持一致） -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
 
-    <main class="main-content">
-        <h2>认识一下<span class="highlight">我</span></h2>
-        <div class="about-grid">
-            <div class="about-text">
-                <p>你好！我是一名热爱设计的创意工作者。我擅长将复杂的信息架构转化为直观、美观的用户界面。</p>
-                <br>
-                <p>在这个项目中，我使用了 Figma 进行前期的高保真界面设计，并独立完成了基于 HTML 和 CSS 的前端响应式开发。我深信优秀的设计不仅仅是好看，更是为了解决实际问题。</p>
+    <!-- 顶部导航栏 -->
+    <nav class="glass-nav" id="mainNav">
+        <!-- 正常展开时的内容 -->
+        <div class="nav-content">
+            <div class="logo">Designer.</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html" class="active">关于</a></li>
+                <li><a href="portfolio.html">作品</a></li>
+            </ul>
+            <a href="contact.html" class="btn-contact">联系我</a>
+        </div>
+        <!-- 缩小后的回到顶部箭头 (默认隐藏) -->
+        <div class="nav-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+        </div>
+    </nav>
 
-                <!-- ==============================
-                     视频占位区域
-                =============================== -->
-                <div class="video-wrapper">
-                    <div class="video-placeholder">
-                        <div class="play-btn"></div>
-                        <span>个人介绍视频 (占位)</span>
+    <!-- 关于我页面主体内容 -->
+    <main class="about-page">
+
+        <!-- 页面标题 -->
+        <header class="about-header">
+            <h1 class="section-title">关于我</h1>
+            <p class="section-subtitle">"设计不仅仅是外观，更是事物运行的方式。"</p>
+        </header>
+
+        <!-- 模块 1：个人简介 (图文并排) -->
+        <section class="about-profile">
+            <div class="profile-layout">
+                <!-- 左侧头像占位 -->
+                <div class="glass-card profile-image">
+                    <span class="img-placeholder-text">个人照片占位</span>
+                </div>
+                <!-- 右侧文字 -->
+                <div class="profile-text">
+                    <h2>嗨，很高兴认识你 👋</h2>
+                    <p>你好！我是一名热爱设计的创意工作者。我擅长将复杂的信息架构转化为直观、美观的用户界面。</p>
+                    <p>在这个项目中，我使用了 Figma 进行前期的高保真界面设计，并独立完成了基于 HTML 和 CSS 的前端响应式开发。我深信优秀的设计不仅仅是好看，更是为了解决实际问题。</p>
+                    <a href="#" class="btn-download glass-card">⬇️ 下载我的完整简历 (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模块 2：能力栈 / 工具树 (悬浮玻璃徽章) -->
+        <section class="about-tools">
+            <h2 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">常用武器库</h2>
+            <div class="tools-container">
+                <div class="glass-card tool-pill">🎨 Figma</div>
+                <div class="glass-card tool-pill">⚡ Visual Studio</div>
+                <div class="glass-card tool-pill">🧊 Blender</div>
+                <div class="glass-card tool-pill">🪄 Adobe Ps & Ai</div>
+                <div class="glass-card tool-pill">🎬 After Effects</div>
+                <div class="glass-card tool-pill">💻 HTML / CSS / JS</div>
+            </div>
+        </section>
+
+        <!-- 模块 3：时间轴履历 (发光玻璃节点) -->
+        <section class="about-experience">
+            <h2 class="section-title" style="font-size: 2rem;">履历轨迹</h2>
+            <div class="timeline">
+
+                <!-- 经历 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="glass-card timeline-content">
+                        <span class="timeline-date">2024 - 至今</span>
+                        <h3>数字媒体艺术</h3>
+                        <h4>北京工商大学 设计与艺术学院</h4>
+                        <p>简介占位</p>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 30px; margin-bottom: 15px; color: #FFF;">我的技能树</h3>
-                <div class="skills">
-                    <span class="skill-tag">Figma UI设计</span>
-                    <span class="skill-tag">网页信息架构</span>
-                    <span class="skill-tag">HTML / CSS</span>
-                    <span class="skill-tag">响应式布局</span>
-                    <span class="skill-tag">用户体验 (UX)</span>
+                <!-- 经历 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="glass-card timeline-content">
+                        <span class="timeline-date">2006 - 2024</span>
+                        <h3>成长中</h3>
+                        <h4>简介占位</h4>
+                        <p>简介占位</p>
+                    </div>
+                </div>
+
+                <!-- 教育背景 -->
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="glass-card timeline-content">
+                        <span class="timeline-date">2006</span>
+                        <h3>我出生了</h3>
+                        <h4>北京市西城区</h4>
+                        <p>简介占位</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 模块 4：生活碎片 (便当盒画廊) -->
+        <section class="about-life">
+            <h2 class="section-title" style="font-size: 2rem;">设计之外的我</h2>
+            <p class="section-subtitle" style="margin-bottom: 40px;">除了像素，我也热爱捕捉真实世界的光影</p>
+            <div class="life-gallery">
+                <div class="glass-card life-item tall" style="background: linear-gradient(to bottom, #a1c4fd 0%, #c2e9fb 100%);">
+                    <span class="img-placeholder-text">摄影作品占位</span>
+                </div>
+                <div class="glass-card life-item wide" style="background: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%);">
+                    <span class="img-placeholder-text">桌面外设占位</span>
+                </div>
+                <div class="glass-card life-item" style="background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);">
+                    <span class="img-placeholder-text">看展记录</span>
+                </div>
+                <div class="glass-card life-item" style="background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);">
+                    <span class="img-placeholder-text">手办收藏</span>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- 底部 -->
+        <footer>
+            <p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p>
+        </footer>
+
     </main>
 
-    <footer><p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p></footer>
-    <!-- 自动依次浮入动画脚本 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 选取页面上的核心模块（排除了弹窗里的内容）
-            const elements = document.querySelectorAll('.hero-section h1, .hero-section p, .about-text p, h3, .skills, .video-wrapper, .card, h2');
-            let delay = 0.1; // 初始延迟 0.1秒
-
-            elements.forEach((el) => {
-                if (el.closest('.modal-overlay')) return; // 不处理隐藏弹窗里的元素
-                el.classList.add('animate-up');
-                el.style.animationDelay = `${delay}s`;
-                delay += 0.15; // 每个元素比上一个晚出现 0.15秒
-            });
-        });</script>
-    <!-- ==========================================
-         全局转场动画控制脚本
-    =========================================== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. 页面进入时的淡出动画
-            const transitionOverlay = document.querySelector('.page-transition-overlay');
-            if (transitionOverlay) {
-                setTimeout(() => {
-                    transitionOverlay.classList.add('loaded');
-                }, 0);
-            }
-
-            // 2. 拦截所有的 <a> 标签点击事件，制造页面离开时的黑屏动画
-            const links = document.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    const targetUrl = this.getAttribute('href');
-                    const targetBlank = this.getAttribute('target');
-
-                    // 排除：没有链接、锚点链接（如 #xxx）、新窗口打开的链接、或者是发邮件的链接
-                    if (!targetUrl || targetUrl.startsWith('#') || targetBlank === '_blank' || targetUrl.startsWith('mailto:')) {
-                        return; // 不拦截，走默认行为
-                    }
-
-                    // 阻止默认的瞬间跳转
-                    e.preventDefault();
-
-                    // 去除 loaded 类，让黑屏加载圈重新淡入
-                    transitionOverlay.classList.remove('loaded');
-
-                    // 等待 600 毫秒（等待黑屏完全盖住页面），然后再跳转
-                    setTimeout(() => {
-                        window.location.href = targetUrl;
-                    }, 600);
-                });
-            });
-        });
-    </script>
+    <!-- 引入外部全局交互脚本 -->
+    <script src="main.js"></script>
 </body>
 </html>

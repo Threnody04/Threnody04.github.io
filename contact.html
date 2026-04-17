@@ -3,172 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>与我联系 - 我的作品集</title>
+    <title>联系我 - 个人介绍</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ==========================================
-         页面转场遮罩层
-    =========================================== -->
-    <div class="page-transition-overlay"></div>
 
-    <header class="navbar">
-        <a href="index.html" class="logo">MyLogo</a>
-        <nav class="nav-links">
-            <a href="index.html">首页</a>
-            <a href="about.html">关于</a>
-            <a href="portfolio.html">作品</a>
-        </nav>
-        <a href="contact.html" class="btn-contact" style="box-shadow: 0 0 15px rgba(46, 255, 79, 0.5);">与我联系</a>
-    </header>
-
-    <main class="main-content">
-
-        <!-- 唯一的一屏：联系卡片 + 留言按钮 -->
-        <!-- 注意：这里去掉了 HTML 里的类名和行内样式，全部交给下面的 JS 去丝滑接管 -->
-        <div class="contact-hero" style="min-height: 75vh;">
-            <h2>随时<span class="highlight">保持联系</span></h2>
-            <p class="portfolio-desc">你可以通过以下方式直接找到我，或者点击下方按钮给我留言。</p>
-
-            <div class="contact-cards-grid">
-                <!-- 电话卡片 -->
-                <div class="contact-card">
-                    <div class="contact-icon">📱</div>
-                    <h3>电话</h3>
-                    <p style="color: #ccc;">+86 138 8888 8888</p>
-                </div>
-                <!-- 邮箱卡片 -->
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <h3>电子邮件</h3>
-                    <p style="color: #ccc;">**********@outlook.com</p>
-                </div>
-                <!-- 地址卡片 -->
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
-                    <h3>所在位置</h3>
-                    <p style="color: #ccc;">北京市 房山区 北京工商大学</p>
-                </div>
-            </div>
-
-            <!-- 呼出弹窗的大按钮区域 (加了个 class 方便 JS 选中) -->
-            <div class="msg-btn-wrapper" style="margin-top: 60px;">
-                <button id="open-msg-btn" class="btn-contact" style="padding: 15px 40px; font-size: 20px; box-shadow: 0 0 20px rgba(46, 255, 79, 0.3);">
-                    ✍️ 给我留言
-                </button>
-            </div>
-        </div>
-
-    </main>
-
-    <footer><p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p></footer>
-
-    <!-- ==========================================
-         留言表单弹窗
-    =========================================== -->
-    <div id="contact-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 500px; padding: 40px 30px;">
-            <span class="close-btn" id="close-msg-btn">&times;</span>
-
-            <h2 style="font-size: 32px; margin-bottom: 10px; text-align: center;">给我<span class="highlight">留言</span></h2>
-            <p class="portfolio-desc" style="text-align: center; margin-bottom: 30px; font-size: 14px;">对我的作品感兴趣？请填写下方表单！</p>
-
-            <form class="contact-form" style="margin-top: 0;">
-                <div>
-                    <label for="userName" style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">你的称呼</label>
-                    <input id="userName" type="text" placeholder="输入你的名字">
-                </div>
-                <div>
-                    <label for="userEmail" style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">电子邮箱</label>
-                    <input id="userEmail" type="email" placeholder="输入你的邮箱">
-                </div>
-                <div>
-                    <label for="userMsg" style="color: #CCC; font-size: 14px; margin-bottom: 5px; display: block;">留言内容</label>
-                    <textarea id="userMsg" placeholder="输入你想对我说的话..." style="min-height: 120px;"></textarea>
-                </div>
-                <button type="button" class="btn-contact" style="width: 100%; margin-top: 20px; padding: 12px;">发送消息</button>
-            </form>
-        </div>
+    <!-- 背景环境光 -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2" style="background: #fccb90;"></div> <!-- 换个暖色调，更亲切 -->
     </div>
 
-    <!-- 弹窗控制与入场动画脚本 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. 采用和其他页面一模一样的“动态赋予延迟”算法，保证丝滑
-            const elements = document.querySelectorAll('.contact-hero h2, .contact-hero p.portfolio-desc, .contact-card, .msg-btn-wrapper');
-            let delay = 0.1;
+    <!-- 顶部导航栏 (注意：联系我按钮去掉了，因为当前就在联系页) -->
+    <nav class="glass-nav" id="mainNav">
+        <div class="nav-content">
+            <div class="logo">Designer.</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="portfolio.html">作品</a></li>
+            </ul>
+            <a href="contact.html" class="btn-contact" class="active">联系我</a>
+        </div>
+        <div class="nav-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+        </div>
+    </nav>
 
-            elements.forEach((el) => {
-                el.classList.add('animate-up');
-                el.style.animationDelay = `${delay}s`;
-                delay += 0.15; // 依次延迟 0.15 秒
-            });
+    <!-- 联系我页面主体 -->
+    <main class="contact-page">
+        <header class="contact-header">
+            <h1 class="section-title fade-up-element">随时准备开启新灵感。</h1>
+            <p class="section-subtitle fade-up-element">无论是一个激动人心的项目，还是一句简单的问候，都欢迎与我联系。</p>
+        </header>
 
-            // 2. 留言弹窗逻辑
-            const modal = document.getElementById('contact-modal');
-            const openBtn = document.getElementById('open-msg-btn');
-            const closeBtn = document.getElementById('close-msg-btn');
+        <div class="contact-layout">
+            
+            <!-- 左侧：联系方式与社交媒体 -->
+            <div class="glass-card contact-info fade-up-element">
+                <h2>Let's Talk! </h2>
+                <p class="info-desc">我很乐意与志同道合的人交流。你可以通过表单给我发邮件，或者直接通过以下方式找到我。</p>
+                
+                <div class="direct-contact">
+                    <!-- 电话 -->
+                    <div class="contact-item wechat-hover">
+                        <span class="icon">📱</span>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+86 138 8888 8888</p>
+                        </div>
+                    </div>
+                    <!-- 邮箱 -->
+                    <div class="contact-item">
+                        <span class="icon">📧</span>
+                        <div>
+                            <h4>Email</h4>
+                            <p>**********@outlook.com</p>
+                        </div>
+                    </div>
 
-            // 打开弹窗
-            openBtn.addEventListener('click', () => {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // 阻止底层背景滚动
-            });
+                    <!-- 微信 (带有悬停显示二维码的微交互) -->
+                    <div class="contact-item wechat-hover">
+                        <span class="icon">💬</span>
+                        <div>
+                            <h4>WeChat</h4>
+                            <p>Design_With_Me</p>
+                        </div>
+                        <!-- 隐藏的二维码玻璃卡片 -->
+                        <div class="qr-code-glass">
+                            <span class="img-placeholder-text" style="font-size: 1rem;">二维码占位图</span>
+                        </div>
+                    </div>
 
-            // 关闭弹窗的公共函数
-            const closeModal = () => {
-                modal.classList.remove('active');
-                document.body.style.overflow = ''; // 恢复背景滚动
-            };
+                </div>
 
-            // 点击右上角 X 关闭
-            closeBtn.addEventListener('click', closeModal);
+                <!-- 社交媒体链接 (圆形玻璃按钮) -->
+                <div class="social-links">
+                    <a href="https://space.bilibili.com/391248568" class="social-btn" title="Bilibili">哔</a>
+                    <a href="#" class="social-btn" title="小红书">小</a>
+                    <a href="#" class="social-btn" title="站酷">Z</a>
+                </div>
+            </div>
 
-            // 点击黑色半透明背景关闭
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
-        });
-    </script>
-    <!-- ==========================================
-         全局转场动画控制脚本
-    =========================================== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. 页面进入时的淡出动画
-            const transitionOverlay = document.querySelector('.page-transition-overlay');
-            if (transitionOverlay) {
-                // 为了让加载圈有展示的时间，稍微延迟 100 毫秒再淡出
-                setTimeout(() => {
-                    transitionOverlay.classList.add('loaded');
-                }, 0);
-            }
+            <!-- 右侧：内凹玻璃质感表单 -->
+            <div class="glass-card contact-form fade-up-element">
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('由于是静态页面，发送功能待后端接入。但UI已经完美呈现！');">
+                    <div class="form-group">
+                        <label for="name">你的称呼</label>
+                        <input type="text" id="name" class="glass-input" placeholder="怎么称呼你？" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">电子邮箱</label>
+                        <input type="email" id="email" class="glass-input" placeholder="example@mail.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">留言内容</label>
+                        <textarea id="message" class="glass-input" rows="5" placeholder="输入你想对我说的话..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">发送信息 🚀</button>
+                </form>
+            </div>
 
-            // 2. 拦截所有的 <a> 标签点击事件，制造页面离开时的黑屏动画
-            const links = document.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    const targetUrl = this.getAttribute('href');
-                    const targetBlank = this.getAttribute('target');
+        </div>
+    </main>
 
-                    // 排除：没有链接、锚点链接（如 #xxx）、新窗口打开的链接、或者是发邮件的链接
-                    if (!targetUrl || targetUrl.startsWith('#') || targetBlank === '_blank' || targetUrl.startsWith('mailto:')) {
-                        return; // 不拦截，走默认行为
-                    }
+    <!-- 底部 -->
+    <footer>
+        <p>© 2026 数媒241 武嵩浩 网站信息架构与布局练习作业.</p>
+    </footer>
 
-                    // 阻止默认的瞬间跳转
-                    e.preventDefault();
-
-                    // 去除 loaded 类，让黑屏加载圈重新淡入
-                    transitionOverlay.classList.remove('loaded');
-
-                    // 等待 200 毫秒（等待黑屏完全盖住页面），然后再跳转
-                    setTimeout(() => {
-                        window.location.href = targetUrl;
-                    }, 200);
-                });
-            });
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
